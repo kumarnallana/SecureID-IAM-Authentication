@@ -236,7 +236,48 @@ const passwordInput = document.querySelector('[data-testid="reg-password"]');
 const togglePasswordBtn = document.querySelector('[data-testid="toggle-password-btn"]');
 const regSubmitBtn = document.querySelector('[data-testid="reg-submit-btn"]');
 
-// Live Password Validation Checklist
+// [ENHANCEMENT - PART 1]: Password Strength Meter DOM Elements
+const passwordStrengthMeter = document.getElementById("password-strength-meter");
+const passwordStrengthText = document.getElementById("strength-text");
+
+// [ENHANCEMENT - PART 1]: Dynamic Password Strength Calculation Helper
+function calculatePasswordStrength(password) {
+  if (!password) {
+    return {
+      score: 0,
+      label: "",
+      stateClass: "",
+    };
+  }
+
+  let score = 0;
+  if (password.length >= 8) score++;
+  if (/[A-Z]/.test(password)) score++;
+  if (/[0-9]/.test(password)) score++;
+  if (/[^A-Za-z0-9]/.test(password)) score++;
+
+  if (score <= 1) {
+    return {
+      score,
+      label: "Weak",
+      stateClass: "strength--weak",
+    };
+  }
+  if (score <= 3) {
+    return {
+      score,
+      label: "Medium",
+      stateClass: "strength--medium",
+    };
+  }
+  return {
+    score,
+    label: "Strong",
+    stateClass: "strength--strong",
+  };
+}
+
+// Live Password Validation Checklist & Strength Meter
 if (passwordInput) {
   const evaluatePasswordRules = () => {
     const val = passwordInput.value;
@@ -256,6 +297,13 @@ if (passwordInput) {
         }
       });
     });
+
+    // [ENHANCEMENT - PART 1]: Update strength meter bar and text label dynamically
+    const { label, stateClass } = calculatePasswordStrength(val);
+    if (passwordStrengthMeter && passwordStrengthText) {
+      passwordStrengthMeter.className = `password-strength ${stateClass}`;
+      passwordStrengthText.textContent = label ? `Strength: ${label}` : "Password strength";
+    }
   };
 
   passwordInput.addEventListener("input", evaluatePasswordRules);

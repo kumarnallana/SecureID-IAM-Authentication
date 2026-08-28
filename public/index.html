@@ -120,6 +120,15 @@
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                 </button>
               </div>
+
+              <!-- [ENHANCEMENT - PART 1]: Password Strength Indicator Meter -->
+              <div class="password-strength" id="password-strength-meter" aria-live="polite">
+                <div class="password-strength__bar">
+                  <div class="password-strength__fill" id="strength-fill"></div>
+                </div>
+                <span class="password-strength__label" id="strength-text">Password strength</span>
+              </div>
+
               <span data-testid="error-reg-password" class="form-field__error-text hidden" aria-live="polite"></span>
             </div>
 
