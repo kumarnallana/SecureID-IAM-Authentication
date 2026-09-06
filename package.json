@@ -29,7 +29,7 @@
     "bugs":  {
                  "url":  "https://github.com/kumarnallana/SecureID-IAM-Authentication/issues"
              },
-    "homepage":  "https://secureid-identity-access.vercel.app",
+    "homepage":  "https://secureid-iam-auth.vercel.app",
     "dependencies":  {
                          "@neondatabase/serverless":  "^1.1.0",
                          "@prisma/adapter-neon":  "^7.9.1",
