@@ -15,7 +15,7 @@ SecureID implements the supplied two-part assessment using vanilla HTML/CSS/Java
 | :--- | :--- |
 | **Live Production URL** | [https://secureid-identity-access.vercel.app](https://secureid-identity-access.vercel.app) |
 | **Vercel Account** | sasi-kumar-nallana ([vercel.com/sasi-kumar-nallana/secureid-identity-access](https://vercel.com/sasi-kumar-nallana/secureid-identity-access)) |
-| **Vercel Project Name** | secureid-identity-access *(formerly 	ruly-ias-assessment)* |
+| **Vercel Project Name** | secureid-identity-access *(formerly truly-ias-assessment)* |
 | **GitHub Repository** | [https://github.com/kumarnallana/SecureID-IAM-Authentication](https://github.com/kumarnallana/SecureID-IAM-Authentication) |
 | **Developer** | Nallana Sasi Kumar ([sasikumarnallana956@gmail.com](mailto:sasikumarnallana956@gmail.com)) |
 
@@ -56,3 +56,4 @@ The Playwright suite contains functional, accessibility, responsive, security, a
 - [Corrected IAM video evidence review](docs/iam-video-evidence-review.md)
 - [UI reference map](docs/ui-reference-map.md)
 - [UI baseline policy](docs/ui-baseline-policy.md)
+
