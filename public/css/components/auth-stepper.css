@@ -1,6 +1,6 @@
-/* ==========================================================================
+﻿/* ==========================================================================
    Component: AuthStepper
-   Description: Registration progress indicator dots and lines
+   Registration progress indicator dots and connector lines
    ========================================================================== */
 .auth-stepper {
   display: flex;
@@ -22,14 +22,17 @@
   height: 28px;
   border-radius: 50%;
   background: var(--color-bg-page);
-  border: 1px solid var(--color-border);
+  border: 1.5px solid var(--color-border);
   color: var(--color-text-muted);
   font-size: 0.8125rem;
   font-weight: 600;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s ease;
+  transition:
+    background-color var(--transition-base),
+    border-color var(--transition-base),
+    color var(--transition-base);
 }
 
 .auth-stepper__dot--active {
@@ -42,20 +45,14 @@
   background: var(--color-primary);
   border-color: var(--color-primary);
   color: white;
-  animation: stepperComplete 200ms ease forwards;
-}
-
-@keyframes stepperComplete {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
+  animation: stepperComplete 240ms ease forwards;
 }
 
 .auth-stepper__line {
   height: 2px;
   width: 24px;
   background: var(--color-border);
-  transition: background 200ms ease;
+  transition: background-color var(--transition-base);
 }
 
 .auth-stepper__line--completed {

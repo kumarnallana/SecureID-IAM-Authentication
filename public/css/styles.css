@@ -1,12 +1,15 @@
-/* ==========================================================================
+﻿/* ==========================================================================
    SecureID - CSS Entrypoint
-   Critical Load Order: Tokens MUST load first so custom properties resolve
+   Load order matters: tokens -> animations -> components -> base -> utilities
    ========================================================================== */
 
-/* 1. Design Tokens (The foundation) */
+/* 1. Design Tokens (variables must resolve before anything uses them) */
 @import url('./tokens.css');
 
-/* 2. Shared Components */
+/* 2. Animations (keyframes referenced by components below) */
+@import url('./animations.css');
+
+/* 3. Shared Components */
 @import url('./components/auth-card.css');
 @import url('./components/auth-header.css');
 @import url('./components/auth-stepper.css');
@@ -17,8 +20,10 @@
 @import url('./components/buttons.css');
 @import url('./components/feedback.css');
 
-/* 3. Base / Reset */
-*, *::before, *::after {
+/* 4. Base / Reset */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -29,10 +34,12 @@ body {
   background-color: var(--color-bg-page);
   color: var(--color-text-main);
   line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Safest for tall content */
+  justify-content: flex-start;
   align-items: center;
   padding: 1.5rem 1rem;
 }
@@ -44,31 +51,24 @@ body {
   }
 }
 
-/* 4. Screen visibility management */
+/* 5. Screen visibility + entrance animation */
 .screen {
   display: none;
 }
 
-.screen[data-active="true"] {
+.screen[data-active=true] {
   display: block;
-  animation: fadeIn 0.3s ease;
+  animation: screenEnter var(--transition-slow) forwards;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(5px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .screen[data-active="true"] {
-    animation: none;
-  }
-}
-
-/* 5. Utility classes */
-.text-bold { font-weight: 600; }
-.hidden { display: none !important; }
-[hidden] { display: none !important; }
+/* 6. Utility classes */
+.text-bold   { font-weight: 600; }
+.text-center { text-align: center; }
+.hidden      { display: none !important; }
+[hidden]     { display: none !important; }
+.mt-4  { margin-top: 1rem; }
+.mb-2  { margin-bottom: 0.5rem; }
+.mb-6  { margin-bottom: 1.5rem; }
 
 .visually-hidden {
   position: absolute !important;
@@ -82,20 +82,29 @@ body {
   border: 0;
 }
 
+/* 7. MFA Method Option Cards ------------------------------------------------ */
 .mfa-option-card {
   display: flex;
   align-items: center;
   gap: 1rem;
   padding: 1rem;
-  border: 1px solid var(--color-border);
+  border: 1.5px solid var(--color-border);
   border-radius: var(--radius-md);
   cursor: pointer;
-  transition: border-color 0.2s ease, background-color 0.2s ease;
+  transition:
+    border-color var(--transition-base),
+    background-color var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+.mfa-option-card:hover {
+  border-color: var(--color-border-focus);
+  background-color: var(--color-primary-soft);
 }
 
 .mfa-option-card.selected {
   border-color: var(--color-border-focus);
-  background: rgba(19, 65, 224, 0.035);
+  background-color: var(--color-primary-soft);
 }
 
 .mfa-option-card--disabled {
@@ -103,11 +112,83 @@ body {
   opacity: 0.55;
 }
 
-.mfa-option-card__description {
-  color: var(--color-text-muted);
-  font-size: 0.8125rem;
+.mfa-option-card__icon {
+  font-size: 1.5rem;
+  line-height: 1;
+  flex-shrink: 0;
 }
 
+.mfa-option-card__label {
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: var(--color-text-main);
+}
+
+.mfa-option-card__description {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  margin-top: 0.125rem;
+}
+
+/* 8. Button group layout ---------------------------------------------------- */
+.btn-group {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.btn-group--full > * {
+  flex: 1;
+}
+
+/* 9. QR Code image ---------------------------------------------------------- */
+.qr-image {
+  width: 200px;
+  height: 200px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  margin-bottom: 1rem;
+  display: block;
+}
+
+/* 10. Manual TOTP key display ----------------------------------------------- */
+.manual-key-display {
+  background: var(--color-bg-page);
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  word-break: break-all;
+  letter-spacing: 0.04em;
+  border: 1px solid var(--color-border);
+  margin-top: 0.75rem;
+}
+
+/* 11. Registration success checklist ---------------------------------------- */
+.success-checklist {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  align-items: center;
+}
+
+.success-checklist__item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 500;
+  font-size: 0.9375rem;
+}
+
+.success-checklist__check {
+  color: var(--color-success);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+/* 12. Scope / disclaimer notice --------------------------------------------- */
 .scope-notice {
   margin-top: 1rem;
   color: var(--color-text-muted);
@@ -116,6 +197,7 @@ body {
   text-align: center;
 }
 
+/* 13. Dashboard layout ------------------------------------------------------ */
 .dashboard-profile {
   margin: 1.5rem 0;
   padding: 1rem;
@@ -140,16 +222,17 @@ body {
   border-radius: var(--radius-md);
   background: #f4f7ff;
   color: var(--color-text-main);
-  font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+  font-family: var(--font-mono);
   font-size: 0.75rem;
   line-height: 1.5;
   overflow-wrap: anywhere;
   white-space: pre-wrap;
 }
 
+/* 14. Mobile-specific overrides --------------------------------------------- */
 @media (max-width: 767px) {
-  .auth-card--login [data-testid="login-otp-screen"] .screen-header__subtitle,
-  .auth-card--login [data-testid="login-otp-screen"] .auth-footer {
+  .auth-card--login [data-testid=login-otp-screen] .screen-header__subtitle,
+  .auth-card--login [data-testid=login-otp-screen] .auth-footer {
     color: #5f6368;
   }
 }

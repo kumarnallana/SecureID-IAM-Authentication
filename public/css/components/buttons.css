@@ -1,24 +1,30 @@
-/* ==========================================================================
-   Component: Buttons & Layout utilities
+﻿/* ==========================================================================
+   Component: Buttons
    ========================================================================== */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 0.5rem;
   width: 100%;
-  padding: 0.875rem 1.5rem;
-  font-size: 1rem;
-  font-weight: 600;
+  padding: 0.75rem 1.5rem;
   border-radius: var(--radius-lg);
-  border: 1px solid transparent;
+  border: 1.5px solid transparent;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
   cursor: pointer;
-  transition: all 150ms ease;
-  transform: scale(1);
-  text-decoration: none;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    transform var(--transition-fast),
+    opacity var(--transition-fast);
 }
 
-.btn:active:not(:disabled) {
-  transform: scale(0.98);
+.btn:active {
+  transform: translateY(1px) scale(0.98);
 }
 
 .btn:disabled {
@@ -26,41 +32,88 @@
   cursor: not-allowed;
 }
 
+/* Primary */
 .btn--primary {
   background-color: var(--color-primary);
-  color: #FFFFFF;
+  color: #ffffff;
+  box-shadow: 0 1px 3px rgba(15, 58, 210, 0.3), 0 4px 8px rgba(15, 58, 210, 0.15);
 }
 
 .btn--primary:not(:disabled):hover {
   background-color: var(--color-primary-hover);
+  box-shadow: 0 2px 6px rgba(15, 58, 210, 0.4), 0 6px 16px rgba(15, 58, 210, 0.2);
 }
 
+.btn--primary:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus), 0 1px 3px rgba(15, 58, 210, 0.3);
+}
+
+/* Secondary / outline */
 .btn--secondary {
-  background-color: #FFFFFF;
+  background-color: var(--color-bg-card);
   color: var(--color-primary);
   border-color: var(--color-primary);
 }
 
 .btn--secondary:not(:disabled):hover {
-  background-color: var(--color-bg-page);
+  background-color: var(--color-primary-soft);
 }
 
+.btn--secondary:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+/* Link-style button */
 .btn--link {
   background: none;
   border: none;
   color: var(--color-primary);
+  font-family: var(--font-sans);
   font-weight: 600;
   font-size: 0.875rem;
   cursor: pointer;
   padding: 0;
   text-decoration: none;
+  transition: color var(--transition-fast);
 }
 
 .btn--link:hover {
   text-decoration: underline;
 }
 
-/* Auth Footer */
+/* Back button (icon button) */
+.btn--back {
+  background: none;
+  border: none;
+  font-size: var(--icon-size-control);
+  color: var(--color-text-main);
+  cursor: pointer;
+  padding: 0.75rem;
+  margin-left: -0.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.btn--back:hover,
+.btn--back:focus-visible {
+  background-color: var(--color-bg-page);
+}
+
+.btn--back:focus-visible {
+  outline: 2px solid var(--color-border-focus);
+  outline-offset: 2px;
+}
+
+.btn--back:active {
+  transform: scale(0.96);
+}
+
+/* Auth footer (below forms) */
 .auth-footer {
   margin-top: 1.5rem;
   text-align: center;
@@ -78,43 +131,7 @@
   text-decoration: underline;
 }
 
-.text-center { text-align: center; }
-.mt-4 { margin-top: 1rem; }
-.mb-6 { margin-bottom: 1.5rem; }
-.mb-2 { margin-bottom: 0.5rem; }
-
-/* Back Button */
-.btn--back {
-  background: none;
-  border: none;
-  font-size: var(--icon-size-control);
-  color: var(--color-text-main);
-  cursor: pointer;
-  padding: 0.75rem; /* Larger touch target */
-  margin-left: -0.75rem; /* Optical alignment */
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8px;
-  transition: all 140ms ease;
-}
-
-.btn--back:hover,
-.btn--back:focus-visible {
-  opacity: 1;
-  background-color: var(--color-bg-page);
-}
-
-.btn--back:focus-visible {
-  outline: 2px solid var(--color-border-focus);
-  outline-offset: 2px;
-}
-
-.btn--back:active {
-  transform: scale(0.97);
-}
-
-/* Utilities */
+/* Responsive utilities */
 @media (min-width: 768px) {
   .mobile-only {
     display: none !important;

@@ -1,17 +1,19 @@
-/* ==========================================================================
+﻿/* ==========================================================================
    Component: AuthCard
-   Description: The main container for the authentication screens.
+   The main container shell for all authentication screens.
    ========================================================================== */
 .auth-card {
   width: 100%;
-  max-width: 480px; /* Default for mobile/tablet */
+  max-width: 480px;
   background-color: var(--color-bg-card);
   border-radius: var(--radius-xl);
   padding: 2.5rem;
   box-shadow: var(--shadow-card);
-  margin: auto; /* Centers horizontally and vertically in flex parent */
+  margin: auto;
+  transition: box-shadow var(--transition-slow);
 }
 
+/* Mobile: card dissolves into page background */
 @media (max-width: 767px) {
   .auth-card {
     padding: 1rem;
@@ -21,6 +23,7 @@
   }
 }
 
+/* Tablet: hide desktop-only structural elements */
 @media (max-width: 1023px) {
   .auth-card--registration .auth-card__top-bar {
     display: none;
@@ -28,10 +31,9 @@
   .auth-card__brand-panel {
     display: none !important;
   }
-
 }
 
-/* Desktop Exact Structural Layouts */
+/* ── Desktop: Registration layout ────────────────────────────────────────── */
 @media (min-width: 1024px) {
   .auth-card--registration {
     max-width: var(--desktop-card-width-reg);
@@ -44,11 +46,13 @@
     width: 100%;
   }
 
+  /* Left column: form + screen header */
   .auth-card--registration .auth-card__form-column > .screen-header,
-  .auth-card--registration .auth-card__form-column > [data-testid="error-form"] {
+  .auth-card--registration .auth-card__form-column > [data-testid=error-form] {
     width: 55%;
   }
 
+  /* Two-column form grid: inputs left, password rules right */
   .registration-form {
     display: grid;
     grid-template-columns: 55% 40%;
@@ -56,9 +60,7 @@
     align-items: start;
   }
 
-  .registration-form > .form-field {
-    grid-column: 1;
-  }
+  .registration-form > .form-field         { grid-column: 1; }
 
   .registration-form > .password-rules {
     grid-column: 2;
@@ -77,6 +79,7 @@
     grid-column: 1 / -1;
   }
 
+  /* Top bar: logo | stepper | (space) */
   .auth-card__top-bar {
     display: grid;
     grid-template-columns: 1fr auto 1fr;
@@ -84,32 +87,30 @@
     margin-bottom: 2rem;
     width: 100%;
   }
-  
-  .auth-card__top-bar .auth-header {
-    justify-self: start;
-  }
-  
-  .auth-card__top-bar .auth-stepper {
-    justify-self: center;
-    grid-column: 2;
-  }
 
+  .auth-card__top-bar .auth-header  { justify-self: start; }
+  .auth-card__top-bar .auth-stepper { justify-self: center; grid-column: 2; }
+
+  /* Centered single-column screens (OTP, success, etc.) */
   .auth-card__center-column {
     max-width: 480px;
     margin: 0 auto;
     width: 100%;
   }
 
+/* ── Desktop: Login split-pane layout ──────────────────────────────────── */
   .auth-card--login {
     max-width: var(--desktop-card-width-login);
     display: flex;
-    padding: 0; /* padding is handled by panels */
+    padding: 0;
     overflow: hidden;
+    transition: box-shadow var(--transition-slow);
   }
 
+  /* Brand / hero panel */
   .auth-card__brand-panel {
     width: var(--desktop-login-brand-ratio);
-    background: linear-gradient(135deg, var(--color-primary) 0%, #0a2791 100%);
+    background: linear-gradient(150deg, #1a4de0 0%, #0a2791 60%, #091f72 100%);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -129,15 +130,17 @@
     margin-bottom: 1rem;
     font-size: 2rem;
     font-weight: 700;
+    letter-spacing: -0.02em;
   }
 
   .auth-card__brand-desc {
-    opacity: 0.9;
-    font-size: 1.125rem;
-    max-width: 280px;
-    line-height: 1.5;
+    opacity: 0.88;
+    font-size: 1rem;
+    max-width: 240px;
+    line-height: 1.6;
   }
 
+  /* Form panel */
   .auth-card__form-panel {
     width: var(--desktop-login-form-ratio);
     padding: 3rem;

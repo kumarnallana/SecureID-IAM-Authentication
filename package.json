@@ -1,58 +1,73 @@
-﻿{
-    "name":  "secureid-identity-access",
-    "version":  "1.0.0",
-    "description":  "",
-    "main":  "index.js",
-    "scripts":  {
-                    "start":  "node server/server.js",
-                    "dev":  "node server/server.js",
-                    "build":  "prisma generate",
-                    "postinstall":  "prisma generate",
-                    "prisma:generate":  "prisma generate",
-                    "prisma:migrate":  "prisma migrate dev",
-                    "db:push":  "prisma db push",
-                    "test":  "playwright test",
-                    "test:unit":  "node --test tests/unit/*.test.js",
-                    "test:integration":  "node --test tests/integration/*.test.js",
-                    "test:functional":  "playwright test tests/regression/functional tests/regression/security"
-                },
-    "repository":  {
-                       "type":  "git",
-                       "url":  "git+https://github.com/kumarnallana/SecureID-IAM-Authentication.git"
-                   },
-    "keywords":  [
-
-                 ],
-    "author":  "",
-    "license":  "ISC",
-    "type":  "module",
-    "bugs":  {
-                 "url":  "https://github.com/kumarnallana/SecureID-IAM-Authentication/issues"
-             },
-    "homepage":  "https://secureid-iam-auth.vercel.app",
-    "dependencies":  {
-                         "@neondatabase/serverless":  "^1.1.0",
-                         "@prisma/adapter-neon":  "^7.9.1",
-                         "@prisma/adapter-pg":  "^7.10.0",
-                         "@prisma/client":  "^7.9.1",
-                         "bcryptjs":  "^3.0.3",
-                         "cors":  "^2.8.6",
-                         "dotenv":  "^17.4.2",
-                         "express":  "^5.2.1",
-                         "express-rate-limit":  "^8.6.2",
-                         "helmet":  "^8.3.0",
-                         "otpauth":  "^9.5.1",
-                         "pg":  "^8.23.0",
-                         "qrcode":  "^1.5.4",
-                         "tsx":  "^4.23.12",
-                         "ws":  "^8.21.3",
-                         "zod":  "^4.4.3"
-                     },
-    "devDependencies":  {
-                            "@axe-core/playwright":  "^4.13.0",
-                            "@playwright/test":  "^1.62.1",
-                            "@types/node":  "^26.3.0",
-                            "prisma":  "^7.9.1",
-                            "puppeteer":  "^25.9.0"
-                        }
+{
+    "name": "secureid-identity-access",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "dev": "next dev -p 4000",
+        "build": "prisma generate && next build",
+        "start": "next start -p 4000",
+        "server:legacy": "node server/server.js",
+        "postinstall": "prisma generate",
+        "prisma:generate": "prisma generate",
+        "prisma:migrate": "prisma migrate dev",
+        "db:push": "prisma db push",
+        "test": "playwright test",
+        "test:unit": "node --test tests/unit/*.test.js",
+        "test:integration": "node --test tests/integration/*.test.js",
+        "test:functional": "playwright test tests/regression/functional tests/regression/security"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/kumarnallana/SecureID-IAM-Authentication.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "type": "module",
+    "bugs": {
+        "url": "https://github.com/kumarnallana/SecureID-IAM-Authentication/issues"
+    },
+    "homepage": "https://secureid-iam-auth.vercel.app",
+    "dependencies": {
+        "@neondatabase/serverless": "^1.1.0",
+        "@prisma/adapter-neon": "^7.9.1",
+        "@prisma/adapter-pg": "^7.10.0",
+        "@prisma/client": "^7.9.1",
+        "@tanstack/react-query": "^5.102.8",
+        "bcryptjs": "^3.0.3",
+        "clsx": "^2.1.1",
+        "cors": "^2.8.6",
+        "dotenv": "^17.4.2",
+        "express": "^5.2.1",
+        "express-rate-limit": "^8.6.2",
+        "framer-motion": "^13.2.0",
+        "gsap": "^3.15.0",
+        "helmet": "^8.3.0",
+        "lenis": "^1.3.26",
+        "lucide-react": "^1.41.0",
+        "next": "^14.2.35",
+        "otpauth": "^9.5.1",
+        "pg": "^8.23.0",
+        "qrcode": "^1.5.4",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
+        "tailwind-merge": "^3.6.0",
+        "tsx": "^4.23.12",
+        "ws": "^8.21.3",
+        "zod": "^4.4.3"
+    },
+    "devDependencies": {
+        "@axe-core/playwright": "^4.13.0",
+        "@playwright/test": "^1.62.1",
+        "@types/node": "^26.4.1",
+        "@types/react": "^18.3.31",
+        "@types/react-dom": "^18.3.7",
+        "autoprefixer": "^10.5.5",
+        "postcss": "^8.5.28",
+        "prisma": "^7.9.1",
+        "puppeteer": "^25.9.0",
+        "tailwindcss": "^3.4.19",
+        "typescript": "^5.9.3"
+    }
 }

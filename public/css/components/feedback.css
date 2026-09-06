@@ -1,30 +1,17 @@
-/* ==========================================================================
+﻿/* ==========================================================================
    Component: Feedback
-   Description: Unified feedback messages for info, error, success
+   Unified feedback messages: info, error, success
    ========================================================================== */
 .feedback {
   display: flex;
   align-items: flex-start;
   gap: 0.5rem;
   padding: 0.75rem 1rem;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   font-size: 0.875rem;
   line-height: 1.4;
   margin-bottom: 1.5rem;
-  transition: all 160ms ease;
-  animation: feedbackEntrance 180ms ease forwards;
-}
-
-@keyframes feedbackEntrance {
-  from { opacity: 0; transform: translateY(4px) scale(0.98); }
-  to { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .feedback {
-    animation: none;
-    transition: none;
-  }
+  animation: feedbackEntrance 200ms ease forwards;
 }
 
 .feedback__icon {
@@ -48,14 +35,14 @@
   opacity: 0.9;
 }
 
-/* Error State */
+/* Error */
 .feedback--error {
   background-color: var(--color-error-bg);
   color: var(--color-error);
-  border: 1px solid rgba(220, 38, 38, 0.15); /* subtle red border */
+  border: 1px solid rgba(220, 38, 38, 0.18);
 }
 
-/* Info State */
+/* Info */
 .feedback--info {
   background-color: var(--color-bg-page);
   color: var(--color-text-main);
@@ -66,11 +53,11 @@
   color: var(--color-text-muted);
 }
 
-/* Success State */
+/* Success */
 .feedback--success {
-  background-color: rgba(33, 166, 73, 0.1);
+  background-color: rgba(33, 166, 73, 0.10);
   color: var(--color-success);
-  border: 1px solid rgba(33, 166, 73, 0.2);
+  border: 1px solid rgba(33, 166, 73, 0.22);
 }
 
 .feedback.hidden {

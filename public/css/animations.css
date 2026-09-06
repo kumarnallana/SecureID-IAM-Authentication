@@ -1,0 +1,56 @@
+﻿/* ==========================================================================
+   SecureID - Animation Keyframes
+   Single source of truth for all motion definitions.
+   Import order: must load after tokens.css so variables resolve.
+   ========================================================================== */
+
+/* --- Screen / Page transitions -------------------------------------------- */
+@keyframes screenEnter {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Feedback banners (error / info / success) ----------------------------- */
+@keyframes feedbackEntrance {
+  from { opacity: 0; transform: translateY(4px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0)   scale(1); }
+}
+
+/* --- Inline field-level error text ---------------------------------------- */
+@keyframes slideFadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Icon badge: success checkmark pop ------------------------------------ */
+@keyframes successPop {
+  0%   { opacity: 0; transform: scale(0.5); }
+  70%  { opacity: 1; transform: scale(1.1); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* --- Stepper dot: completion pulse ---------------------------------------- */
+@keyframes stepperComplete {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+/* --- OTP box: focus shimmer ring ------------------------------------------ */
+@keyframes shimmerIn {
+  from { box-shadow: 0 0 0 0 var(--color-primary-soft); }
+  to   { box-shadow: var(--shadow-focus); }
+}
+
+/* ==========================================================================
+   Reduced Motion: disable all decorative animation for users who prefer it
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

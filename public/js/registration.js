@@ -331,7 +331,7 @@ function validateRegForm(data) {
     errors["reg-password"] = "Password must satisfy all complexity requirements.";
   }
   if (!data.termsAccepted) {
-    errors["reg-termsAccepted"] = "Please accept the Terms & Conditions and Privacy Policy to continue.";
+    errors["reg-terms"] = "Please accept the Terms & Conditions and Privacy Policy to continue.";
   }
   return errors;
 }
@@ -342,7 +342,7 @@ if (regForm) {
   emailInput?.addEventListener("input", () => clearFieldError("reg-email"));
   mobileInput?.addEventListener("input", () => clearFieldError("reg-mobile"));
   passwordInput?.addEventListener("input", () => clearFieldError("reg-password"));
-  document.querySelector('[data-testid="reg-termsAccepted"]')?.addEventListener("change", () => clearFieldError("reg-termsAccepted"));
+  document.querySelector('[data-testid="reg-terms"]')?.addEventListener("change", () => clearFieldError("reg-terms"));
 
   regForm.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -351,7 +351,7 @@ if (regForm) {
       email: emailInput?.value || "",
       mobile: mobileInput?.value || "",
       password: passwordInput?.value || "",
-      termsAccepted: document.querySelector('[data-testid="reg-termsAccepted"]')?.checked || false,
+      termsAccepted: document.querySelector('[data-testid="reg-terms"]')?.checked || false,
     };
 
     const clientErrors = validateRegForm(formData);
@@ -776,3 +776,4 @@ if (continueLoginBtn) {
 document.addEventListener("DOMContentLoaded", () => {
   showScreen("registration");
 });
+

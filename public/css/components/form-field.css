@@ -1,6 +1,6 @@
-/* ==========================================================================
+﻿/* ==========================================================================
    Component: FormField
-   Description: Standard inputs, labels, errors, and input groups
+   Standard inputs, labels, errors, and input groups
    ========================================================================== */
 .form-field {
   margin-bottom: 1.25rem;
@@ -18,17 +18,21 @@
 .form-field__input {
   width: 100%;
   padding: 0.75rem 1rem;
-  border: 1px solid var(--color-border);
+  border: 1.5px solid var(--color-border);
   border-radius: var(--radius-md);
+  font-family: var(--font-sans);
   font-size: 0.9375rem;
   color: var(--color-text-main);
   background-color: var(--color-bg-card);
-  transition: all 0.2s ease;
+  transition:
+    border-color var(--transition-base),
+    box-shadow var(--transition-base);
 }
 
 .form-field__input:focus {
   outline: none;
   border-color: var(--color-border-focus);
+  box-shadow: var(--shadow-focus);
 }
 
 .form-field__input--error {
@@ -43,29 +47,19 @@
   animation: slideFadeIn 160ms ease forwards;
 }
 
-@keyframes slideFadeIn {
-  from { opacity: 0; transform: translateY(4px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .form-field__error-text {
-    animation: none;
-  }
-}
-
-/* Phone Input Group (with +91 prefix) */
+/* Phone Input Group (with country prefix) */
 .form-field__group {
   display: flex;
   align-items: center;
-  border: 1px solid var(--color-border);
+  border: 1.5px solid var(--color-border);
   border-radius: var(--radius-md);
   background-color: var(--color-bg-card);
-  transition: all 0.2s ease;
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
 }
 
 .form-field__group:focus-within {
   border-color: var(--color-border-focus);
+  box-shadow: var(--shadow-focus);
 }
 
 .form-field__group--error {
@@ -76,7 +70,8 @@
   padding: 0.75rem 0.5rem 0.75rem 1rem;
   color: var(--color-text-main);
   border: none;
-  border-right: 1px solid var(--color-border);
+  border-right: 1.5px solid var(--color-border);
+  font-family: var(--font-sans);
   font-size: 0.9375rem;
   background: transparent;
   outline: none;
@@ -84,19 +79,19 @@
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background-image: url('data:image/svg+xml;utf8,<svg fill="%23666" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+  background-image: url('data:image/svg+xml;utf8,<svg fill=%23666 height=24 viewBox=0 0 24 24 width=24 xmlns=http://www.w3.org/2000/svg><path d=M7 10l5 5 5-5z/><path d=M0 0h24v24H0z fill=none/></svg>');
   background-repeat: no-repeat;
-  background-position-x: 100%;
-  background-position-y: 5px;
+  background-position: right 4px center;
   padding-right: 1.5rem;
 }
 
 .form-field__group .form-field__input {
   border: none;
   border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  box-shadow: none;
 }
 
-/* Input Wrapper with Icons */
+/* Input with leading icon */
 .form-field__icon-wrapper,
 .form-field__password-wrapper {
   position: relative;
@@ -112,39 +107,40 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: color 150ms ease;
+  transition: color var(--transition-fast);
+  pointer-events: none;
 }
 
 .form-field__icon-wrapper:focus-within .form-field__leading-icon {
   color: var(--color-border-focus);
 }
 
-/* Adjust input padding when leading icon is present */
 .form-field__icon-wrapper .form-field__input,
 .form-field__icon-wrapper.form-field__password-wrapper .form-field__input {
   padding-left: 2.75rem;
-  padding-right: 2.75rem; /* Prevent text overlap with eye icon */
+  padding-right: 2.75rem;
 }
 
+/* Password visibility toggle */
 .form-field__password-toggle {
   position: absolute;
-  right: 0.5rem; /* adjusted for the larger padding */
+  right: 0.5rem;
   background: none;
   border: none;
   color: var(--color-text-muted);
   cursor: pointer;
-  padding: 0.5rem; /* larger touch target */
+  padding: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
-  transition: all 140ms ease;
+  border-radius: var(--radius-md);
+  transition: background-color var(--transition-fast), color var(--transition-fast);
 }
 
 .form-field__password-toggle svg {
   width: var(--icon-size-control);
   height: var(--icon-size-control);
-  transition: opacity 140ms ease, transform 140ms ease;
+  transition: opacity var(--transition-fast);
 }
 
 .form-field__password-toggle:hover,
@@ -162,7 +158,7 @@
   transform: scale(0.97);
 }
 
-/* Checkbox Label */
+/* Checkbox label */
 .form-field__checkbox-label {
   display: flex;
   align-items: flex-start;
@@ -171,18 +167,23 @@
   color: var(--color-text-muted);
   margin-bottom: 1.5rem;
   cursor: pointer;
-  transition: color 150ms ease;
+  transition: color var(--transition-fast);
 }
 
 .form-field__checkbox-label--error {
   color: var(--color-error);
 }
 
-.form-field__checkbox-label input[type="checkbox"] {
+.form-field__checkbox-label input[type=checkbox] {
   margin-top: 0.25rem;
+  accent-color: var(--color-primary);
 }
 
 .form-field__checkbox-label a {
   color: var(--color-primary);
   text-decoration: none;
+}
+
+.form-field__checkbox-label a:hover {
+  text-decoration: underline;
 }

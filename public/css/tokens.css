@@ -1,130 +1,58 @@
-/* ==========================================================================
+﻿/* ==========================================================================
    SecureID - Design System Tokens
    ========================================================================== */
 :root {
-  /* 
-   * Provenance: media_1787629740571.png (Web Registration Flow)
-   * Region: "Create Account" button background
-   * Value extracted via direct pixel sampling
-   */
-  --color-primary: #0F3AD2;
+  /* ---- Brand Colors ---- */
+  --color-primary:        #0F3AD2;
+  --color-primary-hover:  #0c2fa8;
+  --color-primary-soft:   rgba(15, 58, 210, 0.08);
 
-  /* 
-   * Provenance: Derived from --color-primary for hover states.
-   */
-  --color-primary-hover: #0c2fa8;
+  --color-error:          #E42929;
+  --color-error-bg:       #FCEAEA;
 
-  /* 
-   * Provenance: media_1787629740612.png (Mobile Registration Flow)
-   * Region: State 2a, "Incorrect code" text
-   */
-  --color-error: #E42929;
+  --color-success:        #21A649;
 
-  /* 
-   * Provenance: media_1787629740612.png (Mobile Registration Flow)
-   * Region: State 2a, error banner background
-   */
-  --color-error-bg: #FCEAEA;
+  /* ---- Text Colors ---- */
+  --color-text-main:      #1A1C21;
+  --color-text-muted:     #61646B;
 
-  /* 
-   * Provenance: media_1787629740612.png (Mobile Registration Flow)
-   * Region: State 7, registration success checkmark badge background
-   */
-  --color-success: #21A649;
+  /* ---- Borders ---- */
+  --color-border:         #D5D7DF;
+  --color-border-focus:   #0F3AD2;
 
-  /* 
-   * Provenance: media_1787629740571.png (Web Registration Flow)
-   * Region: "Create your account" title text
-   */
-  --color-text-main: #1A1C21;
+  /* ---- Backgrounds ---- */
+  --color-bg-page:        #F7F8FA;
+  --color-bg-card:        #FFFFFF;
 
-  /* 
-   * Provenance: media_1787629740571.png (Web Registration Flow)
-   * Region: "Let's get you started" subtitle text
-   */
-  --color-text-muted: #61646B;
+  /* ---- Typography ---- */
+  /* Inter loaded via <link> in HTML; system stack as fallback */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Consolas, 'Liberation Mono', Menlo, monospace;
 
-  /* 
-   * Provenance: media_1787629740571.png (Web Registration Flow)
-   * Region: default form input border
-   */
-  --color-border: #D5D7DF;
-  
-  /* 
-   * Provenance: media_1787629740571.png (Web Registration Flow)
-   * Region: focused form input border (same as primary)
-   */
-  --color-border-focus: #0F3AD2;
+  /* ---- Radius ---- */
+  --radius-sm:  4px;
+  --radius-md:  8px;
+  --radius-lg:  12px;
+  --radius-xl:  24px;
 
-  /* 
-   * Provenance: media_1787629740571.png (Web Registration Flow)
-   * Region: page background behind the card
-   */
-  --color-bg-page: #F7F8FA;
+  /* ---- Shadows ---- */
+  --shadow-card:       0 4px 24px rgba(0, 0, 0, 0.06);
+  --shadow-card-hover: 0 8px 32px rgba(0, 0, 0, 0.11);
+  --shadow-focus:      0 0 0 3px var(--color-primary-soft);
 
-  /* 
-   * Provenance: media_1787629740571.png (Web Registration Flow)
-   * Region: main registration card background
-   */
-  --color-bg-card: #FFFFFF;
+  /* ---- Transitions ---- */
+  --transition-fast:   140ms ease;
+  --transition-base:   200ms ease;
+  --transition-slow:   300ms cubic-bezier(0.4, 0, 0.2, 1);
 
-  /* Typography */
-  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-
-  /* 
-   * Provenance: media_1787629740571.png (Web Registration Flow)
-   * Region: Checkbox border-radius 
-   */
-  --radius-sm: 4px;
-
-  /* 
-   * Provenance: media_1787629740571.png (Web Registration Flow)
-   * Region: Form input border-radius
-   */
-  --radius-md: 8px;
-
-  /* 
-   * Provenance: media_1787629740571.png (Web Registration Flow)
-   * Region: Primary button border-radius
-   */
-  --radius-lg: 12px;
-
-  /* 
-   * Provenance: media_1787629740571.png (Web Registration Flow)
-   * Region: Main registration card border-radius
-   */
-  --radius-xl: 24px;
-
-  /* 
-   * Provenance: media_1787629740571.png (Web Registration Flow)
-   * Region: Main registration card drop shadow
-   */
-  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.04);
-
-  /* 
-   * Provenance: media_1787647166587.png (Registration Flow Desktop)
-   * Region: Main card width
-   * Extraction: Derived optimal 2-column width for 1440px viewport
-   */
-  --desktop-card-width-reg: 960px;
-
-  /* 
-   * Provenance: media_1787647174192.png (Login Flow Desktop)
-   * Region: Main card width
-   * Extraction: Derived optimal split-pane width for 1440px viewport
-   */
+  /* ---- Layout (Desktop) ---- */
+  --desktop-card-width-reg:   960px;
   --desktop-card-width-login: 880px;
-
-  /* 
-   * Provenance: media_1787647174192.png (Login Flow Desktop)
-   * Region: Split pane branding ratio
-   * Extraction: Visual bounds derived to 40%
-   */
   --desktop-login-brand-ratio: 40%;
-  --desktop-login-form-ratio: 60%;
+  --desktop-login-form-ratio:  60%;
 
-  /* Icons */
-  --icon-size-input: 1.25rem; /* 20px */
+  /* ---- Icon sizes ---- */
+  --icon-size-input:   1.25rem; /* 20px */
   --icon-size-control: 1.25rem; /* 20px */
-  --icon-size-brand: 3.5rem; /* 56px */
+  --icon-size-brand:   3.5rem;  /* 56px */
 }
