@@ -11,10 +11,10 @@ function showFeedback(element, type, mainText, metaText = "") {
     element.classList.add("hidden");
     return;
   }
-  
+
   element.className = `feedback feedback--${type}`;
   element.classList.remove("hidden");
-  
+
   const icon = type === "error" ? "⚠️" : (type === "info" ? "ℹ️" : "✅");
   const contentEl = element.querySelector(".feedback__content");
   if (contentEl) {
@@ -23,7 +23,7 @@ function showFeedback(element, type, mainText, metaText = "") {
       ${metaText ? `<span class="feedback__meta">${metaText}</span>` : ""}
     `;
   }
-  
+
   const iconEl = element.querySelector(".feedback__icon");
   if (iconEl) {
     iconEl.textContent = icon;
@@ -133,7 +133,7 @@ export function showScreen(screenKey) {
 // --------------------------------------------------------------------------
 function setupOtpInputs(containerId, onComplete) {
   const container = document.getElementById(containerId) || document.querySelector(`[data-testid="${containerId}"]`);
-  if (!container) return { getOtp: () => "", clear: () => {}, setInvalid: () => {} };
+  if (!container) return { getOtp: () => "", clear: () => { }, setInvalid: () => { } };
 
   const inputs = Array.from(container.querySelectorAll("input"));
 
@@ -311,7 +311,7 @@ if (passwordInput) {
   evaluatePasswordRules();
 }
 
-  setupPasswordToggle('[data-testid="reg-password"]', '[data-testid="toggle-password-btn"]');
+setupPasswordToggle('[data-testid="reg-password"]', '[data-testid="toggle-password-btn"]');
 
 // Client-side mirror validation
 function validateRegForm(data) {
@@ -360,7 +360,7 @@ if (regForm) {
 
     regSubmitBtn.disabled = true;
     regSubmitBtn.textContent = "Creating account...";
-    
+
     const formErrorSpan = document.querySelector('[data-testid="error-form"]');
     showFeedback(formErrorSpan, null);
 
@@ -671,22 +671,22 @@ const AUTH_BACK_ROUTES = {
 document.addEventListener("click", (event) => {
   const backBtn = event.target.closest(".btn--back");
   if (!backBtn) return;
-  
+
   const activeScreen = document.querySelector('.screen[data-active="true"]');
   if (!activeScreen) return;
-  
+
   const screenId = activeScreen.getAttribute("data-testid");
   // showScreen takes the key like "emailOtp", but data-testid is "email-otp-screen"
   // Let's find the current screen key by checking `screens` mapping
   const currentScreenKey = Object.keys(screens).find(key => screens[key] === activeScreen);
   const previousState = AUTH_BACK_ROUTES[currentScreenKey];
-  
+
   if (previousState) {
     if (previousState.endsWith(".html")) {
       window.location.href = previousState;
       return;
     }
-    
+
     if (currentScreenKey === "emailOtp" || currentScreenKey === "smsOtp") {
       stopTimers();
     }
